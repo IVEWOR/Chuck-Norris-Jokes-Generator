@@ -7,7 +7,15 @@
     <title>Chuck Norris Jokes Generator</title>
   </head>
   <body>
-    <button id="btn1">Get a joke</button>
+    <form action="" id="form">
+      <label for="firstName">First Name (Default is Chuck)</label>
+      <input type="text" id="firstName" value="Chuck" />
+      <label for="lastName">Last Name (Default is Norris)</label>
+      <input type="text" id="lastName" value="Norris" />
+      <label for="number">Number of jokes (Default is 5)</label>
+      <input type="number" id="number" value="5" />
+      <input type="submit" value="Submit" />
+    </form>
     <div id="output"></div>
     <script src="app.js"></script>
   </body>
