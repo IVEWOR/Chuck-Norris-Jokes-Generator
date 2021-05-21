@@ -1,6 +1,6 @@
 document.getElementById("form").addEventListener("submit", loadJokes);
 
-function loadJokes(e, number = 5, firstName = "Chuck", lastName = "Norris") {
+function loadJokes(e, number, firstName, lastName) {
   // creating a object instance
   const xhr = new XMLHttpRequest();
 
@@ -8,6 +8,10 @@ function loadJokes(e, number = 5, firstName = "Chuck", lastName = "Norris") {
   number = document.getElementById("number").value;
   firstName = document.getElementById("firstName").value;
   lastName = document.getElementById("lastName").value;
+
+  number = number.length > 0 ? number : 5;
+  firstName = firstName.length > 0 ? firstName : "Chuck";
+  lastName = lastName.length > 0 ? lastName : "Norris";
 
   // Opening file
   xhr.open(
