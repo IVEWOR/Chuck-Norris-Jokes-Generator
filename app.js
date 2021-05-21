@@ -25,9 +25,13 @@ function loadJokes(e, number, firstName, lastName) {
     if (this.status === 200) {
       const jokes = JSON.parse(this.responseText);
       let output = "";
+
       if (jokes.type === "success") {
         jokes.value.forEach((joke) => {
-          output += `<li>${joke.joke}</li>`;
+          output += `<li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto joke">${joke.joke}</div>
+          <span class="badge rounded-pill btn btn-primary btn-sm">Copy</span>
+          </li>`;
         });
       } else {
         output += "Something went wrong";
@@ -41,3 +45,27 @@ function loadJokes(e, number, firstName, lastName) {
 
   e.preventDefault();
 }
+
+// Copy text
+
+class Copy {
+  copyText = (target) => {
+    if (target.tagName === "SPAN") {
+      navigator.clipboard.writeText(
+        target.parentElement.firstElementChild.textContent
+      );
+      // Give feedback
+      target.textContent = "Copied!";
+      setTimeout(() => {
+        target.textContent = "Copy";
+      }, 3000);
+    }
+  };
+}
+
+document
+  .getElementById("output")
+  .addEventListener("click", function copyToClipboard(e) {
+    const copy = new Copy();
+    copy.copyText(e.target);
+  });
